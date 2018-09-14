@@ -84,9 +84,7 @@ export default {
                     
                     axios.delete(this.endpoint)
                     .then(res => {
-                        $(this.$el).fadeOut(500, () => {
-                            this.$toast.success(res.data.message, "Sucess", { timeout: 3000 });
-                        })
+                        this.$emit('deleted')
                     });
 
                     instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
