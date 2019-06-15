@@ -13,7 +13,7 @@
         "@fortawesome/fontawesome": "^1.1.8",
         "@fortawesome/fontawesome-free-solid": "^5.0.13",
         "autosize": "^4.0.2",
-        "axios": "^0.18",
+        "axios": "^0.19",
         "bootstrap": "^4.3.1",
         "cross-env": "^5.1",
         "jquery": "^3.4.1",
