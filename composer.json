@@ -11,6 +11,7 @@
         "laravel/framework": "^6.0",
         "laravel/helpers": "^1.0",
         "laravel/nexmo-notification-channel": "^2.0",
+        "laravel/passport": "^7.4",
         "laravel/slack-notification-channel": "^2.0",
         "laravel/tinker": "^1.0",
         "mews/purifier": "^3.0"

@@ -8,6 +8,7 @@ use App\Question;
 use App\Policies\QuestionPolicy;
 use App\Answer;
 use App\Policies\AnswerPolicy;
+use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Passport::routes();
     }
 }
