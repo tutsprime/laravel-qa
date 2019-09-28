@@ -13,7 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('/token', 'Auth\LoginController@getToken');
+Route::post('/login', 'Api\Auth\LoginController@store');
+Route::delete('/logout', 'Api\Auth\LoginController@destroy')->middleware('auth:api');
+Route::post('/register','Api\Auth\RegisterController');
+
 Route::get('/questions', 'Api\QuestionsController@index');
 Route::get('/questions/{question}/answers', 'Api\AnswersController@index');
 Route::get('/questions/{question}-{slug}', 'Api\QuestionDetailsController');
