@@ -79580,7 +79580,7 @@ __webpack_require__.r(__webpack_exports__);
     return user.id === answer.question.user.id;
   },
   deleteQuestion: function deleteQuestion(user, question) {
-    return user.id === question.user_id && question.answers_count < 1;
+    return user.id === question.user.id && question.answers_count < 1;
   }
 });
 

@@ -8,6 +8,6 @@ export default {
     },
 
     deleteQuestion (user, question) {
-        return user.id === question.user_id && question.answers_count < 1;
+        return user.id === question.user.id && question.answers_count < 1;
     }
 }
