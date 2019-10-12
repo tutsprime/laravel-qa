@@ -12098,6 +12098,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    isEdit: {
+      type: Boolean,
+      "default": false
+    }
+  },
   components: {
     MEditor: _MEditor_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
@@ -12117,13 +12123,28 @@ __webpack_require__.r(__webpack_exports__);
     _event_bus__WEBPACK_IMPORTED_MODULE_0__["default"].$on('error', function (errors) {
       return _this.errors = errors;
     });
+
+    if (this.isEdit) {
+      this.fetchQuestion();
+    }
   },
   computed: {
     buttonText: function buttonText() {
-      return 'Ask Question';
+      return this.isEdit ? 'Update Question' : 'Ask Question';
     }
   },
   methods: {
+    fetchQuestion: function fetchQuestion() {
+      var _this2 = this;
+
+      axios.get("/questions/".concat(this.$route.params.id)).then(function (_ref) {
+        var data = _ref.data;
+        _this2.title = data.title;
+        _this2.body = data.body;
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    },
     handleSubmit: function handleSubmit() {
       this.$emit('submitted', {
         title: this.title,
@@ -12381,6 +12402,69 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post('/questions', data).then(function (_ref) {
+        var data = _ref.data;
+
+        _this.$router.push({
+          name: 'questions'
+        });
+
+        _this.$toast.success(data.message, "Success");
+      })["catch"](function (_ref2) {
+        var response = _ref2.response;
+        _event_bus__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('error', response.data.errors);
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/EditQuestionPage.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/EditQuestionPage.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_QuestionForm_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/QuestionForm.vue */ "./resources/js/components/QuestionForm.vue");
+/* harmony import */ var _event_bus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../event-bus */ "./resources/js/event-bus.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    QuestionForm: _components_QuestionForm_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  methods: {
+    update: function update(data) {
+      var _this = this;
+
+      axios.put('/questions/' + this.$route.params.id, data).then(function (_ref) {
         var data = _ref.data;
 
         _this.$router.push({
@@ -64410,41 +64494,51 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "ml-auto" }, [
-          _vm.authorize("modify", _vm.question)
-            ? _c(
-                "a",
-                {
-                  staticClass: "btn btn-sm btn-outline-info",
-                  attrs: { href: "#" }
-                },
-                [_vm._v("Edit")]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.authorize("deleteQuestion", _vm.question)
-            ? _c(
-                "form",
-                {
-                  staticClass: "form-delete",
-                  attrs: { method: "post", action: "#" }
-                },
-                [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-sm btn-outline-danger",
-                      attrs: {
-                        type: "submit",
-                        onclick: "return confirm('Are you sure?')"
+        _c(
+          "div",
+          { staticClass: "ml-auto" },
+          [
+            _vm.authorize("modify", _vm.question)
+              ? _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-sm btn-outline-info",
+                    attrs: {
+                      to: {
+                        name: "questions.edit",
+                        params: { id: _vm.question.id }
                       }
-                    },
-                    [_vm._v("Delete")]
-                  )
-                ]
-              )
-            : _vm._e()
-        ])
+                    }
+                  },
+                  [_vm._v("Edit")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.authorize("deleteQuestion", _vm.question)
+              ? _c(
+                  "form",
+                  {
+                    staticClass: "form-delete",
+                    attrs: { method: "post", action: "#" }
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm btn-outline-danger",
+                        attrs: {
+                          type: "submit",
+                          onclick: "return confirm('Are you sure?')"
+                        }
+                      },
+                      [_vm._v("Delete")]
+                    )
+                  ]
+                )
+              : _vm._e()
+          ],
+          1
+        )
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "lead" }, [
@@ -64791,6 +64885,70 @@ var render = function() {
             "div",
             { staticClass: "card-body" },
             [_c("question-form", { on: { submitted: _vm.create } })],
+            1
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/EditQuestionPage.vue?vue&type=template&id=7bdbc4c8&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/EditQuestionPage.vue?vue&type=template&id=7bdbc4c8& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _c("div", { staticClass: "d-flex align-items-center" }, [
+              _c("h2", [_vm._v("Edit Question")]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "ml-auto" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-outline-secondary",
+                      attrs: { to: { name: "questions" } }
+                    },
+                    [_vm._v("Back to all Questions")]
+                  )
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            [
+              _c("question-form", {
+                attrs: { "is-edit": true },
+                on: { submitted: _vm.update }
+              })
+            ],
             1
           )
         ])
@@ -81285,6 +81443,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/EditQuestionPage.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/pages/EditQuestionPage.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditQuestionPage_vue_vue_type_template_id_7bdbc4c8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditQuestionPage.vue?vue&type=template&id=7bdbc4c8& */ "./resources/js/pages/EditQuestionPage.vue?vue&type=template&id=7bdbc4c8&");
+/* harmony import */ var _EditQuestionPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditQuestionPage.vue?vue&type=script&lang=js& */ "./resources/js/pages/EditQuestionPage.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditQuestionPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditQuestionPage_vue_vue_type_template_id_7bdbc4c8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditQuestionPage_vue_vue_type_template_id_7bdbc4c8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/EditQuestionPage.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/EditQuestionPage.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/pages/EditQuestionPage.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditQuestionPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./EditQuestionPage.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/EditQuestionPage.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditQuestionPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/EditQuestionPage.vue?vue&type=template&id=7bdbc4c8&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/pages/EditQuestionPage.vue?vue&type=template&id=7bdbc4c8& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditQuestionPage_vue_vue_type_template_id_7bdbc4c8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./EditQuestionPage.vue?vue&type=template&id=7bdbc4c8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/EditQuestionPage.vue?vue&type=template&id=7bdbc4c8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditQuestionPage_vue_vue_type_template_id_7bdbc4c8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditQuestionPage_vue_vue_type_template_id_7bdbc4c8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/pages/MyPostsPage.vue":
 /*!********************************************!*\
   !*** ./resources/js/pages/MyPostsPage.vue ***!
@@ -81579,6 +81806,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_MyPostsPage_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/MyPostsPage.vue */ "./resources/js/pages/MyPostsPage.vue");
 /* harmony import */ var _pages_NotFoundPage_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pages/NotFoundPage.vue */ "./resources/js/pages/NotFoundPage.vue");
 /* harmony import */ var _pages_CreateQuestionPage_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../pages/CreateQuestionPage.vue */ "./resources/js/pages/CreateQuestionPage.vue");
+/* harmony import */ var _pages_EditQuestionPage_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../pages/EditQuestionPage.vue */ "./resources/js/pages/EditQuestionPage.vue");
+
 
 
 
@@ -81596,6 +81825,10 @@ var routes = [{
   path: '/questions/create',
   component: _pages_CreateQuestionPage_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
   name: 'questions.create'
+}, {
+  path: '/questions/:id/edit',
+  component: _pages_EditQuestionPage_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+  name: 'questions.edit'
 }, {
   path: '/my-posts',
   component: _pages_MyPostsPage_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
