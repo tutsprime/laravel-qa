@@ -33,8 +33,8 @@ class AnswersController extends Controller
             'body' => 'required'
         ]) + ['user_id' => \Auth::id()]);
 
-        if (env('APP_ENV') == 'local') sleep(60);
-        
+        if (env('APP_ENV') == 'local') sleep(2);
+
         return response()->json([
             'message' => "Your answer has been submitted successfully",
             'answer' => new AnswerResource($answer->load('user'))
