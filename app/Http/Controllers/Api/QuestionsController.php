@@ -18,7 +18,9 @@ class QuestionsController extends Controller
     public function index()
     {
         $questions = Question::with('user')->latest()->paginate(5);
-
+        
+        if (env('APP_ENV') == 'local') sleep(2);
+        
         return QuestionResource::collection($questions);
     }
 
@@ -31,6 +33,8 @@ class QuestionsController extends Controller
     public function store(AskQuestionRequest $request)
     {
         $question = $request->user()->questions()->create($request->only('title', 'body'));
+
+        if (env('APP_ENV') == 'local') sleep(2);
 
         return response()->json([
             'message' => "Your question has been submitted",

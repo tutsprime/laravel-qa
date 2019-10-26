@@ -106,3 +106,13 @@ form.form-delete {
 [v-cloak] {
   display: none;
 }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .3s linear;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
