@@ -33,6 +33,7 @@
 
 <script>
 import destroy from '../mixins/destroy'
+import eventBus from '../event-bus'
 
 export default {
     mixins: [destroy],
@@ -45,12 +46,15 @@ export default {
         },
 
         delete () {
+            this.$root.disableInterceptor();
+
             axios.delete(`/questions/${this.question.id}`)
                 .then(res => {
                     this.$toast.success(res.data.message, "Success", { timeout: 2000 });
-                    this.$emit('deleted')
+                    eventBus.$emit('deleted', this.question.id)
+                    this.$root.enableInterceptor();
                 });
-        } 
+        }
     },
 
     computed: {
