@@ -1,0 +1,118 @@
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+body {
+  background: #f5f8fa;
+}
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.counters {
+  margin-right: 30px;
+  font-size: 10px;
+  text-align: center;
+
+  strong {
+    display: block;
+    font-size: 2em;
+  }
+
+  .vote, .answer {
+    width: 60px;
+    height: 60px;    
+  }
+
+  .status {
+    &.unanswered {
+      border: none;
+    }
+
+    &.answered {
+      border: 1px solid $color-green;
+      color: $color-green;
+    }
+
+    &.answered-accepted {
+      background: $color-green;
+      color: $color-white;
+    }
+  }
+
+  .view {
+    margin-top: 10px;
+  }
+}
+
+form.form-delete {
+  display: inline;
+}
+
+.vote-controls {
+  min-width: 60px;
+  margin-right: 30px;
+  text-align: center;
+  color: $gray-700;
+
+  span, a {
+    display: block;
+  }
+
+  span {
+    &.votes-count {
+      font-size:25px;
+    }
+    &.favorites-count {
+      font-size:12px;
+    }
+  }
+
+  a {
+    cursor: pointer;
+    color: $gray-600;
+
+    &.off, &.off:hover {
+      color: $gray-500;
+    }    
+
+    &.favorite {
+      &.favorited, &.favorited:hover {
+        color: $warning;
+      }
+    }
+
+    &.vote-accepted {
+      color: $green;
+    }
+  }  
+}
+
+.post {
+  padding: 20px 0;
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba($black, .1);
+  }
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .3s linear;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
