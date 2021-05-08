@@ -18,7 +18,7 @@
         "cross-env": "^5.2.1",
         "jquery": "^3.4.1",
         "laravel-mix": "^4.1.4",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.21",
         "markdown-it": "^8.4.2",
         "markdown-it-prism": "^2.0.3",
         "popper.js": "^1.15.0",
