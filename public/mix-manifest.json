@@ -1,4 +1,20 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/css/prismjs-themes/prism-coy.css": "/css/prismjs-themes/prism-coy.css",
+    "/css/prismjs-themes/prism-coy.min.css": "/css/prismjs-themes/prism-coy.min.css",
+    "/css/prismjs-themes/prism-dark.css": "/css/prismjs-themes/prism-dark.css",
+    "/css/prismjs-themes/prism-dark.min.css": "/css/prismjs-themes/prism-dark.min.css",
+    "/css/prismjs-themes/prism-funky.css": "/css/prismjs-themes/prism-funky.css",
+    "/css/prismjs-themes/prism-funky.min.css": "/css/prismjs-themes/prism-funky.min.css",
+    "/css/prismjs-themes/prism-okaidia.css": "/css/prismjs-themes/prism-okaidia.css",
+    "/css/prismjs-themes/prism-okaidia.min.css": "/css/prismjs-themes/prism-okaidia.min.css",
+    "/css/prismjs-themes/prism-solarizedlight.css": "/css/prismjs-themes/prism-solarizedlight.css",
+    "/css/prismjs-themes/prism-solarizedlight.min.css": "/css/prismjs-themes/prism-solarizedlight.min.css",
+    "/css/prismjs-themes/prism-tomorrow.css": "/css/prismjs-themes/prism-tomorrow.css",
+    "/css/prismjs-themes/prism-tomorrow.min.css": "/css/prismjs-themes/prism-tomorrow.min.css",
+    "/css/prismjs-themes/prism-twilight.css": "/css/prismjs-themes/prism-twilight.css",
+    "/css/prismjs-themes/prism-twilight.min.css": "/css/prismjs-themes/prism-twilight.min.css",
+    "/css/prismjs-themes/prism.css": "/css/prismjs-themes/prism.css",
+    "/css/prismjs-themes/prism.min.css": "/css/prismjs-themes/prism.min.css"
 }
