@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+let mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,6 +11,10 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .copy('node_modules/prismjs/themes', 'public/css/prismjs-themes')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.js("resources/js/app.js", "public/js")
+    .vue({
+        version: 2,
+    })
+    // .copy("node_modules/prismjs/themes", "public/css/prismjs-themes")
+    .copy("node_modules/highlight.js/styles", "public/css/hljs-themes")
+    .sass("resources/sass/app.scss", "public/css");
