@@ -16,7 +16,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/prismjs-themes/prism.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/prismjs-themes/prism.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('css/hljs-themes/atom-one-light.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
